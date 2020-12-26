@@ -94,19 +94,12 @@ export default class Ultimacy extends React.Component {
   }
 
   componentDidMount () {
-    // setInterval(() => this.setState(state => ({rot: (state.rot + 2) % 360})), 1)
     this.placePrimals()
   }
 
   render () {
     const inner = 1 / 3
     const outer = 11 / 12
-
-    // <AoE
-    //   color={'red'}
-    //   size={'15vmin'}
-    //   position={{deg: 0, radius: 0}}
-    // />
 
     return (
       <Wrapper>
@@ -121,13 +114,11 @@ export default class Ultimacy extends React.Component {
             size={this.state.markerSize}
             position={{deg: -45, radius: outer}}
           />
-
           <Marker
             name='2'
             size={this.state.markerSize}
             position={{deg: -45, radius: inner}}
           />
-
           <Marker
             name='3'
             size={this.state.markerSize}
@@ -139,19 +130,16 @@ export default class Ultimacy extends React.Component {
             size={this.state.markerSize}
             position={{deg: 0, radius: inner}}
           />
-
           <Marker
             name='b'
             size={this.state.markerSize}
             position={{deg: 90, radius: inner}}
           />
-
           <Marker
             name='c'
             size={this.state.markerSize}
             position={{deg: 180, radius: inner}}
           />
-
           <Marker
             name='d'
             size={this.state.markerSize}
@@ -160,13 +148,14 @@ export default class Ultimacy extends React.Component {
 
           {this.state.progress === 1 && <>
             <CircleAoE
+              // 가루다 - 마녀의 수레바퀴 (내부)
               color={'lightgreen'}
               size={`calc(${this.state.circleSize} * 0.35)`}
               position={{deg: this.state.garuda, radius: inner}}
             />
 
             <RectAoE
-              // 첫번째 이프 대각 장판
+              // 이프리트 - 진홍 회오리 (대각선)
               color={'red'}
               width={`calc(${this.state.circleSize} * 0.4)`}
               height={this.state.circleSize}
@@ -175,7 +164,7 @@ export default class Ultimacy extends React.Component {
             />
 
             <RectAoE
-              // 첫번째 타이탄 산사태 장판 (중앙)
+              // 타이탄 - 산사태 (중앙)
               color={'darkorange'}
               width={this.state.circleSize}
               height={`calc(${this.state.circleSize} / 5.5)`}
@@ -185,7 +174,7 @@ export default class Ultimacy extends React.Component {
               position={{deg: this.state.titan, radius: 1}}
             />
             <RectAoE
-              // 첫번째 타이탄 산사태 장판 (오른쪽)
+              // 타이탄 - 산사태 (오른쪽)
               color={'darkorange'}
               width={this.state.circleSize}
               height={`calc(${this.state.circleSize} / 5.5)`}
@@ -195,7 +184,7 @@ export default class Ultimacy extends React.Component {
               position={{deg: this.state.titan, radius: 1}}
             />
             <RectAoE
-              // 첫번째 타이탄 산사태 장판 (왼쪽)
+              // 타이탄 - 산사태 (왼쪽)
               color={'darkorange'}
               width={this.state.circleSize}
               height={`calc(${this.state.circleSize} / 5.5)`}
@@ -208,24 +197,28 @@ export default class Ultimacy extends React.Component {
 
           {this.state.progress === 2 && <>
             <CircleAoE
+              // 가루다 - 마녀의 회오리 (도넛)
               color={'lightgreen'}
               size={this.state.circleSize}
               position={{deg: this.state.garuda, radius: inner}}
             />
 
             <CircleAoE
+              // 알테마 웨폰 - 청린 방출
               color={'indigo'}
               size={`calc(${Math.cos(45 * Math.PI / 180)} * ${this.state.circleSize})`}
               position={{deg: this.state.ultima, radius: 1}}
             />
 
             <RectAoE
+              // 이프리트 - 진홍 회오리 (십자 세로)
               color={'red'}
               width={`calc(${this.state.circleSize} / 4)`}
               height={this.state.circleSize}
               position={{deg: 0, radius: 0}}
             />
             <RectAoE
+              // 이프리트 - 진홍 회오리 (십자 가로)
               color={'red'}
               width={this.state.circleSize}
               height={`calc(${this.state.circleSize} / 4)`}
@@ -233,6 +226,7 @@ export default class Ultimacy extends React.Component {
             />
 
             <RectAoE
+              // 타이탄 - 산사태 (2회차 오른쪽)
               color={'darkorange'}
               width={this.state.circleSize}
               height={`calc(${this.state.circleSize} / 5.5)`}
@@ -242,6 +236,7 @@ export default class Ultimacy extends React.Component {
               position={{deg: this.state.titan, radius: 1}}
             />
             <RectAoE
+              // 타이탄 - 산사태 (2회차 왼쪽)
               color={'darkorange'}
               width={this.state.circleSize}
               height={`calc(${this.state.circleSize} / 5.5)`}
@@ -268,10 +263,8 @@ export default class Ultimacy extends React.Component {
             name='ifrit'
             size={this.state.primalSize}
             position={{
-              deg: this.state.progress === 2
-                ? (this.state.ifrit + 180)
-                : this.state.ifrit,
               radius: this.state.progress === 2 ? 1.25 : 1,
+              deg: this.state.ifrit + (this.state.progress === 2 ? 180 : 0)
             }}
           />
 
