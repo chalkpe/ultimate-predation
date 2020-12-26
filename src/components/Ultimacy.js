@@ -76,7 +76,7 @@ export default class Ultimacy extends React.Component {
     const intercardinals = [45, 135, 225, 315]
 
     const pick = arr =>
-      arr.splice(Math.floor(Math.random() * arr.length), 1)
+      arr.splice(Math.floor(Math.random() * arr.length), 1)[0]
 
     this.setState({
       progress: 0,
@@ -261,7 +261,12 @@ export default class Ultimacy extends React.Component {
           <Marker
             name='ifrit'
             size={this.state.primalSize}
-            position={{deg: this.state.ifrit, radius: 1}}
+            position={{
+              deg: this.state.progress === 2
+                ? (this.state.ifrit + 180)
+                : this.state.ifrit,
+              radius: this.state.progress === 2 ? 1.25 : 1,
+            }}
           />
 
           <Marker
