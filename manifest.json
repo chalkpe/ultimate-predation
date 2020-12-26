@@ -1,0 +1,25 @@
+{
+  "short_name": "Predation",
+  "name": "Ultimate Predation",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo40.png",
+      "type": "image/png",
+      "sizes": "40x40"
+    },
+    {
+      "src": "logo128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#010101",
+  "background_color": "#010101"
+}
