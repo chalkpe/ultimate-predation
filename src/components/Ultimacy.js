@@ -45,6 +45,12 @@ const Button = styled.button`
     border-color: #899;
   }
 
+  &[disabled] {
+    color: #445;
+    background-color: #222;
+    border-color: #333;
+  }
+
   & + & {
     margin-left: 5px;
   }
