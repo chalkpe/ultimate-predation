@@ -1,5 +1,5 @@
 {
-  "name": "uwu-sim",
+  "name": "ultimate-predation",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,7 +11,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "deploy": "push-dir --dir=build --branch=gh-pages"
   },
   "eslintConfig": {
     "extends": [
@@ -29,5 +30,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "push-dir": "^0.4.1"
   }
 }
