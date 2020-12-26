@@ -2,7 +2,7 @@
   "name": "ultimate-predation",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://chalkpe.github.io/ultimate-predation",
+  "homepage": ".",
   "dependencies": {
     "polished": "^4.0.5",
     "react": "^17.0.1",
