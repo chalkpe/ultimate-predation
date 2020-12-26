@@ -159,6 +159,12 @@ export default class Ultimacy extends React.Component {
           />
 
           {this.state.progress === 1 && <>
+            <CircleAoE
+              color={'lightgreen'}
+              size={`calc(${this.state.circleSize} * 0.35)`}
+              position={{deg: this.state.garuda, radius: inner}}
+            />
+
             <RectAoE
               // 첫번째 이프 대각 장판
               color={'red'}
