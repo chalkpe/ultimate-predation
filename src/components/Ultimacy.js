@@ -14,6 +14,7 @@ const Wrapper = styled.div`
   justify-content: center;
   color: #fefefe;
   background-color: #010101;
+  padding: 0 calc((100vw - 1000px) / 2);
 `
 
 const Circle = styled.div`
@@ -27,9 +28,10 @@ const Circle = styled.div`
 
 const ButtonGroup = styled.div`
   position: absolute;
-  bottom: -4vmin;
-  right: -4vmin;
+  bottom: 2vmin;
+  right: 2vmin;
   z-index: 100;
+  padding-right: inherit;
 `
 
 const Button = styled.button`
@@ -303,8 +305,8 @@ export default class Ultimacy extends React.Component {
 
     return (
       <Wrapper>
+        {nav}
         <Circle circleSize={this.state.circleSize}>
-          {nav}
           {markers}
           {firstAoEs}
           {secondAoEs}
