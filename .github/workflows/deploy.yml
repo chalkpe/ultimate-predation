@@ -13,7 +13,7 @@ jobs:
     - name: Install packages
       uses: bahmutov/npm-install@v1
       with:
-        install-command: yarn --frozen-lockfile 
+        install-command: yarn install --frozen-lockfile --silent
     - name: Build page
       run: yarn build
     - name: Deploy to gh-pages

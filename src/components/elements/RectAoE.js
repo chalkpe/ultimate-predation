@@ -1,25 +1,17 @@
 import styled from 'styled-components'
-import { lighten } from 'polished'
+import AoE from './AoE'
 
-import Base from './Base'
-
-const Rect = styled(Base)`
-  opacity: 0.5;
-  box-sizing: border-box;
-  border: 1vmin solid ${props => props.color};
-  background-color: ${props => lighten(0.2, props.color)};
-  transform: ${props => props.rotate && `rotate(${props.rotate})`};
+const Rect = styled(AoE)`
   transform-origin: ${props => props.origin};
+  transform: ${props => props.rotate && `rotate(${props.rotate})`};
 `
 
-const AoE = ({ color, position, rotate, origin, ...props }) => {
+const RectAoE = ({ rotate, origin, ...props }) => {
   return <Rect
     {...props}
-    color={color}
-    position={position}
     rotate={rotate}
     origin={origin}
   />
 }
 
-export default AoE
+export default RectAoE
