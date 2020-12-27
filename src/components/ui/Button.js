@@ -30,8 +30,7 @@ const Btn = styled.button`
 `
 
 const Button = ({ name, ...props }) => {
-  const langMap = lang[navigator.language.slice(0, 2)]
-  return <Btn {...props}>{(langMap && langMap[name]) || name}</Btn>
+  return <Btn {...props}>{lang(name) || name}</Btn>
 }
 
 export default Button

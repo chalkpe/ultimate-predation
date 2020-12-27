@@ -1,3 +1,4 @@
+import lang from '../../lang'
 import codes from '../../codes'
 import Base from './Base'
 
@@ -7,7 +8,8 @@ const Marker = ({ name, size, ...props }) => {
   return <Base
     {...props}
     as='img'
-    alt={`Marker ${name.toUpperCase()}`}
+    alt={`${lang('marker')} ${name.toUpperCase()}`}
+    title={name.toUpperCase()}
     src={`https://xivapi.com/i/${id.substr(0, 3)}000/${id}.png`}
     width={size}
     height={size}

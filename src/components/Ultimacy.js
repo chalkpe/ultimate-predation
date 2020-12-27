@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import lang from '../lang'
 
 import Button from './ui/Button'
 import ButtonGroup from './ui/ButtonGroup'
@@ -67,6 +68,7 @@ export default class Ultimacy extends React.Component {
 
   componentDidMount () {
     this.placePrimals()
+    document.title = lang('title')
   }
 
   render () {
@@ -74,7 +76,6 @@ export default class Ultimacy extends React.Component {
     const outer = 11 / 12
 
     const titanWidth = 0.175
-    const garudaSize = 0.35
     const ultimaSize = Math.cos(45 * Math.PI / 180)
 
     const colors = {
@@ -133,14 +134,14 @@ export default class Ultimacy extends React.Component {
 
     const firstAoEs = this.state.progress === 1 && <>
       <CircleAoE
-        title='가루다: 마녀의 수레바퀴 (내부)'
+        name='garuda_wicked_wheel'
         color={colors.garuda}
-        size={`calc(${this.props.zoneSize} * ${garudaSize})`}
+        size={`calc(${this.props.zoneSize} * 0.4)`}
         position={{deg: this.state.garuda, radius: inner}}
       />
 
       <RectAoE
-        title='이프리트: 진홍 회오리 (대각선)'
+        name='ifrit_crimson_cyclone'
         color={colors.ifrit}
         width={`calc(${this.props.zoneSize} * 0.5)`}
         height={this.props.zoneSize}
@@ -149,7 +150,7 @@ export default class Ultimacy extends React.Component {
       />
 
       <RectAoE
-        title='타이탄: 산사태 (중앙)'
+        name='titan_landslide'
         color={colors.titan}
         width={this.props.zoneSize}
         height={`calc(${this.props.zoneSize} * ${titanWidth})`}
@@ -159,7 +160,7 @@ export default class Ultimacy extends React.Component {
         position={{deg: this.state.titan, radius: 1}}
       />
       <RectAoE
-        title='타이탄: 산사태 (오른쪽)'
+        name='titan_landslide'
         color={colors.titan}
         width={this.props.zoneSize}
         height={`calc(${this.props.zoneSize} * ${titanWidth})`}
@@ -169,7 +170,7 @@ export default class Ultimacy extends React.Component {
         position={{deg: this.state.titan, radius: 1}}
       />
       <RectAoE
-        title='타이탄: 산사태 (왼쪽)'
+        name='titan_landslide'
         color={colors.titan}
         width={this.props.zoneSize}
         height={`calc(${this.props.zoneSize} * ${titanWidth})`}
@@ -182,22 +183,22 @@ export default class Ultimacy extends React.Component {
 
     const secondAoEs = this.state.progress === 2 && <>
       <CircleAoE
-        title='가루다: 마녀의 회오리 (도넛)'
+        name='garuda_wicked_tornado'
         color={colors.garuda}
         size={this.props.zoneSize}
-        donut={`calc(${this.props.zoneSize} * ${garudaSize})`}
+        donut={`calc(${this.props.zoneSize} * 0.3)`}
         position={{deg: this.state.garuda, radius: inner}}
       />
 
       <RectAoE
-        title='이프리트: 진홍 회오리 (십자 세로)'
+        name='ifrit_crimson_cyclone'
         color={colors.ifrit}
         width={`calc(${this.props.zoneSize} / 4)`}
         height={this.props.zoneSize}
         position={{deg: 0, radius: 0}}
       />
       <RectAoE
-        title='이프리트: 진홍 회오리 (십자 가로)'
+        name='ifrit_crimson_cyclone'
         color={colors.ifrit}
         width={this.props.zoneSize}
         height={`calc(${this.props.zoneSize} / 4)`}
@@ -205,7 +206,7 @@ export default class Ultimacy extends React.Component {
       />
 
       <RectAoE
-        title='타이탄: 산사태 (오른쪽)'
+        name='titan_landslide'
         color={colors.titan}
         width={this.props.zoneSize}
         height={`calc(${this.props.zoneSize} * ${titanWidth})`}
@@ -215,7 +216,7 @@ export default class Ultimacy extends React.Component {
         position={{deg: this.state.titan, radius: 1}}
       />
       <RectAoE
-        title='타이탄: 산사태 (왼쪽)'
+        name='titan_landslide'
         color={colors.titan}
         width={this.props.zoneSize}
         height={`calc(${this.props.zoneSize} * ${titanWidth})`}
@@ -226,7 +227,7 @@ export default class Ultimacy extends React.Component {
       />
 
       <CircleAoE
-        title='알테마 웨폰: 청린 방출'
+        name='ultima_ceruleum_vent'
         color={colors.ultima}
         size={`calc(${this.props.zoneSize} * ${ultimaSize})`}
         position={{deg: this.state.ultima, radius: 1}}
