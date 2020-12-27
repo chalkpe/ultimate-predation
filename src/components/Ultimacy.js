@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import ReactPlayer from 'react-player/youtube'
 
 import lang from '../lang'
 
@@ -128,6 +129,19 @@ export default class Ultimacy extends React.Component {
         <Button onClick={this.prevProgress} disabled={this.state.progress === 0}>{prev || 'prev'}</Button>
         <Button onClick={this.nextProgress} disabled={this.state.progress === 2}>{next || 'next'}</Button>
       </ButtonGroup>
+      <ReactPlayer
+        url='https://youtu.be/Tv_klDrSwMU?t=67'
+        width='160px'
+        height='90px'
+        loop={true}
+        controls={true}
+        style={{
+          opacity: 0.5,
+          top: '2vmin',
+          left: '2vmin',
+          position: 'absolute',
+        }}
+      />
     </>
 
     const markers = <>
@@ -312,6 +326,8 @@ export default class Ultimacy extends React.Component {
           {secondAoEs}
           {enemies}
         </Circle>
+
+
       </Wrapper>
     )
   }
