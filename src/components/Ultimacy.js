@@ -133,13 +133,6 @@ export default class Ultimacy extends React.Component {
     </>
 
     const firstAoEs = this.state.progress === 1 && <>
-      <CircleAoE
-        name='garuda_wicked_wheel'
-        color={colors.garuda}
-        size={`calc(${this.props.zoneSize} * 0.4)`}
-        position={{deg: this.state.garuda, radius: inner}}
-      />
-
       <RectAoE
         name='ifrit_crimson_cyclone'
         color={colors.ifrit}
@@ -178,6 +171,13 @@ export default class Ultimacy extends React.Component {
         origin={'left center'}
         passLeft={true}
         position={{deg: this.state.titan, radius: 1}}
+      />
+
+      <CircleAoE
+        name='garuda_wicked_wheel'
+        color={colors.garuda}
+        size={`calc(${this.props.zoneSize} * 0.35)`}
+        position={{deg: this.state.garuda, radius: inner}}
       />
     </>
 

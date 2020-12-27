@@ -19,7 +19,7 @@ const CircleAoE = ({ size, donut, ...props }) => {
         {...props}
         width={size}
         height={size}
-        thickness={`calc((${size} - ${donut}) * 0.5)`}
+        thickness={`calc(((${size}) - (${donut})) * 0.5)`}
         color={backgroundColor}
         backgroundColor='transparent'
       />
