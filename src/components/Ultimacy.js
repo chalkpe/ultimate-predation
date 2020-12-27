@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import lang from '../lang'
+
 import Enemy from './elements/Enemy'
 import Marker from './elements/Marker'
 import RectAoE from './elements/RectAoE'
@@ -58,22 +60,17 @@ const Button = styled.button`
   }
 `
 
-const langMap = {
-  ko: ['리셋', '다음'],
-  ja: ['リセット', '次']
-}
-
 export default class Ultimacy extends React.Component {
   constructor (props) {
     super(props)
-
+    this.prevProgress = this.prevProgress.bind(this)
     this.nextProgress = this.nextProgress.bind(this)
     this.placePrimals = this.placePrimals.bind(this)
 
     this.state = {
       circleSize: props.circleSize || '90vmin',
       markerSize: props.markerSize || '7vmin',
-      enemySize: props.enemySize || '10vmin',
+      enemySize: props.enemySize || '12vmin',
       
       garuda: 0,
       ifrit: 0,
@@ -100,6 +97,12 @@ export default class Ultimacy extends React.Component {
     })
   }
 
+  prevProgress () {
+    this.setState((state, props) => ({
+      progress: Math.max(state.progress - 1, 0)
+    }))
+  }
+
   nextProgress () {
     this.setState((state, props) => ({
       progress: Math.min(state.progress + 1, 2)
@@ -113,12 +116,15 @@ export default class Ultimacy extends React.Component {
   render () {
     const inner = 1 / 3
     const outer = 11 / 12
-    const [reset, next] = langMap[navigator.language.slice(0, 2)] || ['reset', 'next']
+
+    const l = navigator.language.slice(0, 2)
+    const {reset, prev, next} = lang[l] || {}
 
     const nav = <>
       <ButtonGroup>
-        <Button onClick={this.placePrimals}>{reset}</Button>
-        <Button onClick={this.nextProgress} disabled={this.state.progress === 2}>{next}</Button>
+        <Button onClick={this.placePrimals}>{reset || 'reset'}</Button>
+        <Button onClick={this.prevProgress} disabled={this.state.progress === 0}>{prev || 'prev'}</Button>
+        <Button onClick={this.nextProgress} disabled={this.state.progress === 2}>{next || 'next'}</Button>
       </ButtonGroup>
     </>
 
