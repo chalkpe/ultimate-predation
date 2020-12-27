@@ -12,6 +12,7 @@ const h = p => !p.height || p.passTop ? '' : `- (${p.height} / 2)`
 const Base = styled.div`
   position: absolute;
   user-select: none;
+  opacity: ${p => p.opacity};
   transition: 0.5s ease;
   width: ${p => p.width};
   height: ${p => p.height};

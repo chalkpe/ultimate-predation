@@ -280,6 +280,14 @@ export default class Ultimacy extends React.Component {
         position={{deg: this.state.ifrit + (this.state.progress > 0 && 180), radius: 1}}
       />
 
+      {this.state.progress > 0 && <Enemy
+        // 이프리트 (돌진 이전 위치)
+        name='ifrit'
+        opacity={0.5}
+        size={this.state.enemySize}
+        position={{deg: this.state.ifrit, radius: 1}}
+      />}
+
       <Enemy
         name='ultima'
         size={this.state.enemySize}
