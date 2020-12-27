@@ -1,6 +1,7 @@
 import styled from 'styled-components'
+import lang from '../../lang'
 
-const Button = styled.button`
+const Btn = styled.button`
   padding: 5px 16px;
   font-size: 16px;
   cursor: pointer;
@@ -27,5 +28,10 @@ const Button = styled.button`
     margin-left: 5px;
   }
 `
+
+const Button = ({ name, ...props }) => {
+  const langMap = lang[navigator.language.slice(0, 2)]
+  return <Btn {...props}>{(langMap && langMap[name]) || name}</Btn>
+}
 
 export default Button

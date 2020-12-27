@@ -6,7 +6,7 @@ import Base from './Base'
 const Box = styled(Base)`
   box-sizing: border-box;
   border: 1vmin solid ${props => props.color};
-  background-color: ${props => lighten(0.2, props.color)};
+  background-color: ${props => lighten(0.2, props.backgroundColor || props.color)};
 `
 
 const AoE = ({ color, ...props }) => {

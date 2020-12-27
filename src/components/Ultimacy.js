@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import lang from '../lang'
 import Button from './ui/Button'
 import ButtonGroup from './ui/ButtonGroup'
 import MusicPlayer from './ui/MusicPlayer'
@@ -20,10 +19,10 @@ const Wrapper = styled.div`
   padding: 0 calc((100vw - 1000px) / 2);
 `
 
-const Circle = styled.div`
+const Zone = styled.div`
   position: relative;
-  width: ${props => props.zoneSize};
-  height: ${props => props.zoneSize};
+  width: ${props => props.size};
+  height: ${props => props.size};
   border: 1vmin solid #888;
   border-radius: 50%;
   box-sizing: border-box;
@@ -74,14 +73,22 @@ export default class Ultimacy extends React.Component {
     const inner = 1 / 3
     const outer = 11 / 12
 
-    const l = navigator.language.slice(0, 2)
-    const {reset, prev, next} = lang[l] || {}
+    const titanWidth = 0.175
+    const garudaSize = 0.35
+    const ultimaSize = Math.cos(45 * Math.PI / 180)
+
+    const colors = {
+      garuda: 'lightgreen',
+      ifrit: 'red',
+      titan: 'darkorange',
+      ultima: 'indigo',
+    }
 
     const nav = <>
       <ButtonGroup>
-        <Button onClick={this.placePrimals}>{reset || 'reset'}</Button>
-        <Button onClick={this.prevProgress} disabled={this.state.progress === 0}>{prev || 'prev'}</Button>
-        <Button onClick={this.nextProgress} disabled={this.state.progress === 2}>{next || 'next'}</Button>
+        <Button name='reset' onClick={this.placePrimals} />
+        <Button name='prev' onClick={this.prevProgress} disabled={this.state.progress <= 0} />
+        <Button name='next' onClick={this.nextProgress} disabled={this.state.progress >= 2} />
       </ButtonGroup>
       <MusicPlayer url='https://youtu.be/Tv_klDrSwMU?t=67' />
     </>
@@ -126,15 +133,15 @@ export default class Ultimacy extends React.Component {
 
     const firstAoEs = this.state.progress === 1 && <>
       <CircleAoE
-        // 가루다 - 마녀의 수레바퀴 (내부)
-        color={'lightgreen'}
-        size={`calc(${this.props.zoneSize} * 0.35)`}
+        title='가루다: 마녀의 수레바퀴 (내부)'
+        color={colors.garuda}
+        size={`calc(${this.props.zoneSize} * ${garudaSize})`}
         position={{deg: this.state.garuda, radius: inner}}
       />
 
       <RectAoE
-        // 이프리트 - 진홍 회오리 (대각선)
-        color={'red'}
+        title='이프리트: 진홍 회오리 (대각선)'
+        color={colors.ifrit}
         width={`calc(${this.props.zoneSize} * 0.5)`}
         height={this.props.zoneSize}
         rotate={`${this.state.ifrit}deg`}
@@ -142,30 +149,30 @@ export default class Ultimacy extends React.Component {
       />
 
       <RectAoE
-        // 타이탄 - 산사태 (중앙)
-        color={'darkorange'}
+        title='타이탄: 산사태 (중앙)'
+        color={colors.titan}
         width={this.props.zoneSize}
-        height={`calc(${this.props.zoneSize} * 0.175)`}
+        height={`calc(${this.props.zoneSize} * ${titanWidth})`}
         rotate={`${this.state.titan + 90}deg`}
         origin={'left center'}
         passLeft={true}
         position={{deg: this.state.titan, radius: 1}}
       />
       <RectAoE
-        // 타이탄 - 산사태 (오른쪽)
-        color={'darkorange'}
+        title='타이탄: 산사태 (오른쪽)'
+        color={colors.titan}
         width={this.props.zoneSize}
-        height={`calc(${this.props.zoneSize} * 0.175)`}
+        height={`calc(${this.props.zoneSize} * ${titanWidth})`}
         rotate={`${this.state.titan + 135}deg`}
         origin={'left center'}
         passLeft={true}
         position={{deg: this.state.titan, radius: 1}}
       />
       <RectAoE
-        // 타이탄 - 산사태 (왼쪽)
-        color={'darkorange'}
+        title='타이탄: 산사태 (왼쪽)'
+        color={colors.titan}
         width={this.props.zoneSize}
-        height={`calc(${this.props.zoneSize} * 0.175)`}
+        height={`calc(${this.props.zoneSize} * ${titanWidth})`}
         rotate={`${this.state.titan + 45}deg`}
         origin={'left center'}
         passLeft={true}
@@ -175,42 +182,43 @@ export default class Ultimacy extends React.Component {
 
     const secondAoEs = this.state.progress === 2 && <>
       <CircleAoE
-        // 가루다 - 마녀의 회오리 (도넛)
-        color={'lightgreen'}
+        title='가루다: 마녀의 회오리 (도넛)'
+        color={colors.garuda}
         size={this.props.zoneSize}
+        donut={`calc(${this.props.zoneSize} * ${garudaSize})`}
         position={{deg: this.state.garuda, radius: inner}}
       />
 
       <RectAoE
-        // 이프리트 - 진홍 회오리 (십자 세로)
-        color={'red'}
+        title='이프리트: 진홍 회오리 (십자 세로)'
+        color={colors.ifrit}
         width={`calc(${this.props.zoneSize} / 4)`}
         height={this.props.zoneSize}
         position={{deg: 0, radius: 0}}
       />
       <RectAoE
-        // 이프리트 - 진홍 회오리 (십자 가로)
-        color={'red'}
+        title='이프리트: 진홍 회오리 (십자 가로)'
+        color={colors.ifrit}
         width={this.props.zoneSize}
         height={`calc(${this.props.zoneSize} / 4)`}
         position={{deg: 0, radius: 0}}
       />
 
       <RectAoE
-        // 타이탄 - 산사태 (2회차 오른쪽)
-        color={'darkorange'}
+        title='타이탄: 산사태 (오른쪽)'
+        color={colors.titan}
         width={this.props.zoneSize}
-        height={`calc(${this.props.zoneSize} * 0.175)`}
+        height={`calc(${this.props.zoneSize} * ${titanWidth})`}
         rotate={`${this.state.titan + 90 + 22.5}deg`}
         origin={'left center'}
         passLeft={true}
         position={{deg: this.state.titan, radius: 1}}
       />
       <RectAoE
-        // 타이탄 - 산사태 (2회차 왼쪽)
-        color={'darkorange'}
+        title='타이탄: 산사태 (왼쪽)'
+        color={colors.titan}
         width={this.props.zoneSize}
-        height={`calc(${this.props.zoneSize} * 0.175)`}
+        height={`calc(${this.props.zoneSize} * ${titanWidth})`}
         rotate={`${this.state.titan + 90 - 22.5}deg`}
         origin={'left center'}
         passLeft={true}
@@ -218,9 +226,9 @@ export default class Ultimacy extends React.Component {
       />
 
       <CircleAoE
-        // 알테마 웨폰 - 청린 방출
-        color={'indigo'}
-        size={`calc(${Math.cos(45 * Math.PI / 180)} * ${this.props.zoneSize})`}
+        title='알테마 웨폰: 청린 방출'
+        color={colors.ultima}
+        size={`calc(${this.props.zoneSize} * ${ultimaSize})`}
         position={{deg: this.state.ultima, radius: 1}}
       />
     </>
@@ -262,14 +270,12 @@ export default class Ultimacy extends React.Component {
     return (
       <Wrapper>
         {nav}
-        <Circle zoneSize={this.props.zoneSize}>
+        <Zone size={this.props.zoneSize}>
           {markers}
           {firstAoEs}
           {secondAoEs}
           {enemies}
-        </Circle>
-
-
+        </Zone>
       </Wrapper>
     )
   }
