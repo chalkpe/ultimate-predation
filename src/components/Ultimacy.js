@@ -28,8 +28,8 @@ const Circle = styled.div`
 
 const ButtonGroup = styled.div`
   position: absolute;
-  bottom: 2vmin;
-  right: 2vmin;
+  bottom: 3vmin;
+  right: 3vmin;
   z-index: 100;
   padding-right: inherit;
 `
