@@ -1,25 +1,19 @@
-name: Deployment
-
+name: main
 on:
   push:
     branches: [main]
 
 jobs:
-  deploy:
+  build-and-deploy:
+    name: Build and deploy
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Install Yarn
-      run: npm install -g yarn
+    - name: Checkout
+      uses: actions/checkout@v2
     - name: Install packages
-      run: yarn install --frozen-lockfile
+      uses: bahmutov/npm-install@v1
+      with:
+        install-command: yarn --frozen-lockfile 
     - name: Build page
       run: yarn build
     - name: Deploy to gh-pages
