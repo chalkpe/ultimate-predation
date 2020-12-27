@@ -93,10 +93,10 @@ export default class Ultimacy extends React.Component {
 
     this.setState({
       progress: 0,
-      titan: pick(cardinals),
-      ifrit: pick(intercardinals),
+      garuda: pick(intercardinals.slice()),
       ultima: pick(intercardinals),
-      garuda: pick(intercardinals.slice())
+      ifrit: pick(intercardinals),
+      titan: pick(cardinals)
     })
   }
 
