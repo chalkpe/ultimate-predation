@@ -4,7 +4,6 @@ import lang from '../lang'
 
 import Button from './ui/Button'
 import ButtonGroup from './ui/ButtonGroup'
-import MusicPlayer from './ui/MusicPlayer'
 
 import Enemy from './elements/Enemy'
 import Marker from './elements/Marker'
@@ -91,7 +90,6 @@ export default class Ultimacy extends React.Component {
         <Button name='prev' onClick={this.prevProgress} disabled={this.state.progress <= 0} />
         <Button name='next' onClick={this.nextProgress} disabled={this.state.progress >= 2} />
       </ButtonGroup>
-      <MusicPlayer url='https://youtu.be/Tv_klDrSwMU?t=67' />
     </>
 
     const markers = <>
