@@ -1,7 +1,8 @@
+import React, { useContext } from 'react'
+import { LangContext } from '../../lang'
 
 import styled from 'styled-components'
 import { lighten } from 'polished'
-import lang from '../../lang'
 import Base from './Base'
 
 const Box = styled(Base)`
@@ -12,12 +13,13 @@ const Box = styled(Base)`
 
 const AoE = ({ color, name, ...props }) => {
   const source = name.split('_')[0]
+  const lang = useContext(LangContext)
 
   return <Box
     {...props}
     opacity={0.5}
     color={color}
-    title={`${lang(source)}: ${lang(name)}`}
+    title={`${lang[source]}: ${lang[name]}`}
   />
 }
 

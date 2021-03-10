@@ -1,4 +1,6 @@
-const data = {
+import React from 'react'
+
+export const langs = {
   en: {
     title: 'Ultimate Predation',
     reset: 'Reset',
@@ -54,7 +56,4 @@ const data = {
   }
 }
 
-const lang = (key, language = navigator.language.slice(0, 2), defaultLanguage = 'en') =>
-  (data[language] && data[language][key]) || data[defaultLanguage][key]
-
-export default lang
+export const LangContext = React.createContext(langs.en);

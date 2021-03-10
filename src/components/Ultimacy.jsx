@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import lang from '../lang'
 
 import Button from './ui/Button'
 import ButtonGroup from './ui/ButtonGroup'
@@ -67,7 +66,6 @@ export default class Ultimacy extends React.Component {
 
   componentDidMount () {
     this.placePrimals()
-    document.title = lang('title')
   }
 
   render () {

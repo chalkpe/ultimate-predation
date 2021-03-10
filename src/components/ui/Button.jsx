@@ -1,5 +1,7 @@
+import React, { useContext } from 'react'
+import { LangContext } from '../../lang'
 import styled from 'styled-components'
-import lang from '../../lang'
+
 
 const Btn = styled.button`
   padding: 5px 16px;
@@ -30,7 +32,8 @@ const Btn = styled.button`
 `
 
 const Button = ({ name, ...props }) => {
-  return <Btn {...props}>{lang(name) || name}</Btn>
+  const lang = useContext(LangContext)
+  return <Btn {...props}>{lang[name] || name}</Btn>
 }
 
 export default Button
